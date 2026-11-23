@@ -27,14 +27,14 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-
-      - name: Build APK
+       - name: Build APK
+         working-directory: ./cam-project
         run: gradle assembleDebug --no-daemon --stacktrace
-
+     
       - name: Upload APK
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: '**/build/outputs/apk/debug/*.apk'
+          path: cam-project/app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
